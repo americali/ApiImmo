@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BienController!{% endblock %}
+
+{% block body %}
+    {{ form_start(bienForm) }}  
+{{ form_row(bienForm.photo, {
+    label_attr: {class:'sr-only'} }) }}
+
+{{ form_row(bienForm.description, {
+    label_attr: {class:'sr-only'} }) }}
+
+{{ form_row(bienForm.adresse, {
+    label_attr: {class:'sr-only'} 
+}) }}
+    
+{{ form_row(bienForm.nombreDePieces, {
+    label_attr: {class:'sr-only'} 
+}) }}
+
+{{ form_row(bienForm.prix, {
+    label_attr: {class:'sr-only'} 
+}) }}
+    
+
+
+<button class="btn btn-lg btn-primary btn-block" type="submit">
+   Ajouter
+</button>  
+{{ form_end(bienForm) }}
+    
+
+  
+{% endblock %}

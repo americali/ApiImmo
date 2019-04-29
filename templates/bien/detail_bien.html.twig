@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+{% block body %}
+
+    <div class="image-holder">
+        <img src="{{ asset('images/biens/')}}{{ bien.photo }}" class="img-responsive " alt="properties" >
+    </div>
+
+    <div class="contenthover">
+
+        <h4><a href="{#{{ path('details',  {'slug': costume.id })}}#}">{{ bien.description }}</a></h4>
+        <div class="listing-detail">
+
+
+            <span>{{ bien.prix }}</span>
+            <span>{{ bien.adresse }}</span>
+            <span>{{ bien.nombreDePieces }}</span>
+        </div>  
+
+        <a href="{{ path('edit_bien',  {'id': bien.id })}}">Mise à jour</a>
+
+    </div>
+
+
+{% endblock %}

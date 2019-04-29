@@ -1,0 +1,39 @@
+<div>
+                    <ul class="slides">
+
+
+                        {% for bien in allBiens %}
+                            <div class="col-lg-4 col-sm-6 box">
+
+                                <div class="properties zoomOnHover" height="200px" width="300px">
+
+                                    <div class="image-holder">
+                                        <img src="{{ asset('images/biens/')}}{{ bien.photo }}" class="img-responsive " alt="properties" >
+                                    </div>
+
+                                    <a href="{{ path('detail_bien',  {'id': bien.id })}}">Détails</a>
+                                    <div class="contenthover">
+
+                                        <h4><a href="{#{{ path('details',  {'slug': costume.id })}}#}">{{ bien.description }}</a></h4>
+                                        <div class="listing-detail">
+
+
+                                            <span>{{ bien.prix }}</span>
+                                            <span>{{ bien.adresse }}</span>
+                                            <span>{{ bien.nombreDePieces }}</span>
+                                        </div>  
+
+
+                                    </div>
+
+                                    </a>
+                                </div>
+                            </div>
+
+
+
+
+                        {% endfor %}
+
+                    </ul>
+                </div>

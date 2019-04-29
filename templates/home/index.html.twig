@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <aside id="fh5co-hero" class="js-fullheight">
+        <div class="flexslider js-fullheight">
+            
+            <div id="divAjax">
+                
+                
+                <div>
+                    <ul class="slides">
+
+
+                        {% for bien in allBiens %}
+                            <div class="col-lg-4 col-sm-6 box">
+
+                                <div class="properties zoomOnHover" height="200px" width="300px">
+
+                                    <div class="image-holder">
+                                        <img src="{{ asset('images/biens/')}}{{ bien.photo }}" class="img-responsive " alt="properties" >
+                                    </div>
+
+                                    <a href="{{ path('detail_bien',  {'id': bien.id })}}">Détails</a>
+                                    <div class="contenthover">
+
+                                        <h4><a href="{#{{ path('details',  {'slug': costume.id })}}#}">{{ bien.description }}</a></h4>
+                                        <div class="listing-detail">
+
+
+                                            <span>{{ bien.prix }}</span>
+                                            <span>{{ bien.adresse }}</span>
+                                            <span>{{ bien.nombreDePieces }}</span>
+                                        </div>  
+
+
+                                    </div>
+
+                                    </a>
+                                </div>
+                            </div>
+
+
+
+
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <form action="" method="post" id="biensRecherche">
+                         
+                            <div class="row">
+
+                                <div class="col-lg-12">
+                                    <select class="form-control" name="prix" id ="prix">
+                                        <option selected value>Prix</option>
+                                        <option value="300.00">300-600</option>
+                                        <option value="601.00">600-900</option>
+                                        <option value="901.00">900 ++</option>
+                                    </select>
+                                   
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-lg-12">
+                                    <select class="form-control" name="nombreDePieces" id="nombreDePieces">
+                                        <option selected value>Pièces</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4++</option>
+
+                                    </select>
+                                </div>
+                            </div>                           
+                            <button class="btn btn-lg btn-primary" id="rechercheButton" type="submit">
+                                Chercher
+                            </button> 
+                        </form>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+  
+    <script >
+        var monButton = document.querySelector("#rechercheButton");
+        var selectPrix = document.getElementById('prix');
+        var selectNbp = document.getElementById('nombreDePieces');
+        
+         console.log(monButton);
+         console.log(selectNbp);
+
+        monButton.addEventListener("click", function (event) {
+            actionSort(event);
+        });
+
+        
+
+             function actionSort(event) {
+                 event.preventDefault();
+                 var xhr = new XMLHttpRequest();
+                 var formulaire = new FormData(biensRecherche);
+
+                 console.log(formulaire);
+
+                 xhr.onreadystatechange = function () {
+                     if (xhr.readyState == 4) {
+                         if (xhr.status == 200) {
+                             var reponse = JSON.parse(xhr.responseText);
+                             //var myDataAjax = reponse.partialView;
+
+                             //console.log(myDataAjax);
+
+
+                             var div = document.querySelector("#divAjax>div");
+                             //console.log('div', div);
+                             div.innerHTML = reponse.partialVue;
+                         } else {
+
+                             console.log("erreur JS" + xhr.reponseText);
+                         }
+
+                     }
+                 }
+                 xhr.open('POST', '/ajax/form/data/');
+                 xhr.send(formulaire);
+             }
+
+    </script>
+{% endblock %}
