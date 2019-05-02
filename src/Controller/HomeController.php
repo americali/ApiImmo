@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController {
 
     /**
-     * @Route("/", name="home")
+     * @Route("/home", name="home")
      */
     public function home(BienRepository $bienRepository, Request $request) {
 
@@ -29,6 +29,7 @@ class HomeController extends AbstractController {
     /**
      * @Route ("/ajax/form/data/", name="ajax-recherche-bien");
      */
+
     public function biensTraitementAjax(Request $requeteAjax) {
 
         $criteres = [];

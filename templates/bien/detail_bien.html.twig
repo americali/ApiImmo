@@ -14,10 +14,21 @@
         <h4><a href="{#{{ path('details',  {'slug': costume.id })}}#}">{{ bien.description }}</a></h4>
         <div class="listing-detail">
 
-
+            <div class="prop-details">
+                <p>prix du bien</p>
             <span>{{ bien.prix }}</span>
+            </div>
+
+            <div class="prop-details">
+                <p>adresse du bien</p>
             <span>{{ bien.adresse }}</span>
+            </div>
+
+            <div class="prop-details">
+                <p> nombres de pièces dans le bien</p>
             <span>{{ bien.nombreDePieces }}</span>
+            </div>
+
         </div>  
 
         <a href="{{ path('edit_bien',  {'id': bien.id })}}">Mise à jour</a>
