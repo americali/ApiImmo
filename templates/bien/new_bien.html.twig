@@ -4,21 +4,25 @@
 {% block title %}Hello BienController!{% endblock %}
 
 {% block body %}
-    {{ form_start(bienForm) }}  
+    {{ form_start(bienForm) }}
+    <p> Téléchargez une photo du bien</p>  
 {{ form_row(bienForm.photo, {
     label_attr: {class:'sr-only'} }) }}
-
+    <p> Faite une petite description du bien</p>
 {{ form_row(bienForm.description, {
     label_attr: {class:'sr-only'} }) }}
 
+    <p> Adresse du bien</p>
 {{ form_row(bienForm.adresse, {
     label_attr: {class:'sr-only'} 
 }) }}
     
+    <p>Nombres de pièces dans le bien</p>
 {{ form_row(bienForm.nombreDePieces, {
     label_attr: {class:'sr-only'} 
 }) }}
 
+    <p> Prix du bien</p>
 {{ form_row(bienForm.prix, {
     label_attr: {class:'sr-only'} 
 }) }}
